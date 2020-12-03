@@ -32,7 +32,7 @@ public class Board {
 		
 		
 		final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
-		final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.whitePieces);
+		final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces); //fixed
 
 		this.whitePlayer= new WhitePlayer(this, whiteStandardLegalMoves,blackStandardLegalMoves);
 		this.blackPlayer=new BlackPlayer(this, whiteStandardLegalMoves,blackStandardLegalMoves);
@@ -56,25 +56,31 @@ public class Board {
 		return builder.toString();
 	}
 	//tra ve nguoi choi TRANG
-	public Player whitePlayer(){
+	public WhitePlayer whitePlayer(){
+
 		return this.whitePlayer;
 	}
 
 	//tra ve nguoi choi DEN
-	public Player blackPlayer(){ return this.blackPlayer;
+	public BlackPlayer blackPlayer(){
+
+		return this.blackPlayer;
 	}
 
 	public Player currentPlayer(){
+
 		return  this.currentPlayer;
 	}
 
 	//tra ve cac quan den
 	public  Collection<Piece> getBlackPieces(){
+
 		return this.blackPieces;
 	}
 
 	//tra ve cac quan trang
 	public  Collection<Piece> getWhitePieces(){
+
 		return this.whitePieces;
 	}
 
