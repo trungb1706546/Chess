@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/com/chess/engine/board/BoardUtils.java=UTF-8
+encoding//src/com/chess/engine/board/Tile.java=UTF-8
+encoding//src/com/chess/engine/pieces/King.java=UTF-8
+encoding//src/com/chess/engine/pieces/Knight.java=UTF-8
+encoding//src/com/chess/engine/pieces/Pawn.java=UTF-8
