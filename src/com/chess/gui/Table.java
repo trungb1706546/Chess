@@ -32,6 +32,9 @@ public class Table {
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
     private  Board chessBoard;
+    private final GameHistoryPanel gameHistoryPanel;
+    private final TakenPiecesPanel takenPiecesPanel;
+    private final MoveLog moveLog;
 
     private Tile sourceTile; //ô nguồn
     private Tile destinationTile; // ô đích
@@ -42,7 +45,7 @@ public class Table {
 
 
     //kich thuoc JFrame
-    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600,600); //kich thuoc của Frame
+    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(700,600); //kich thuoc của Frame
     private static final Dimension BOARD_PANEL_DEMENSION= new Dimension(400,350);
     private static final Dimension TILE_PANEL_DIMENSION= new Dimension(10,10); // kich thuoc o cờ
     private static String linkHinhAnh ="hinhanh/covua/"; // duong dan hinh anh
@@ -60,9 +63,16 @@ public class Table {
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION); //dặt kích thước cho Jfram
         this.chessBoard= Board.createStanderBoard(); // tao ra ban co tieu chuan
 
+        this.gameHistoryPanel= new GameHistoryPanel();
+        this.takenPiecesPanel= new TakenPiecesPanel();
+
         this.boardPanel = new BoardPanel();
+        this.moveLog=new MoveLog();
         this.boardDirection = BoardDirection.NORMAL;
         this.highlightLegalMoves=false;
+        this.gameFrame.add(this.takenPiecesPanel,BorderLayout.WEST);
+        this.gameFrame.add(this.gameHistoryPanel,BorderLayout.EAST);
+
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 
         this.gameFrame.setVisible(true); //hiển thị Jfram
@@ -109,8 +119,8 @@ public class Table {
     }
 
     private  JMenu createPreferencesMenu(){
-        final JMenu preferencesMenu = new JMenu("Preferencese");
-        final JMenuItem flipBoardMenuItem = new JMenuItem("Flip Board");
+        final JMenu preferencesMenu = new JMenu("Tiện ích");//Preferencese
+        final JMenuItem flipBoardMenuItem = new JMenuItem("Đổi Bên");//Flip Board
         flipBoardMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +132,7 @@ public class Table {
 
         preferencesMenu.addSeparator();
 
-        final JCheckBoxMenuItem legalMoveHighlighterCheckbox = new JCheckBoxMenuItem("Highlight legal Move",false);
+        final JCheckBoxMenuItem legalMoveHighlighterCheckbox = new JCheckBoxMenuItem("Hiển thị nước đi",false);//Highlight legal Move
 
         legalMoveHighlighterCheckbox.addActionListener(new ActionListener() {
             @Override
@@ -194,6 +204,42 @@ public class Table {
 
     }
 
+
+    //nhat ki di chuyen
+    public static  class MoveLog{
+
+        private  final List<Move> moves;
+
+        MoveLog(){
+            this.moves=new ArrayList<>();
+        }
+
+        public List<Move> getMoves(){
+            return this.moves;
+        }
+
+        public void addMove(final Move move){
+            this.moves.add(move);
+        }
+
+        public int size(){
+            return this.moves.size();
+        }
+
+        public void clear(){
+            this.moves.clear();
+        }
+
+        public Move removeMove(int index){
+            return this.moves.remove(index);
+        }
+        public boolean removeMove(final Move move){
+            return this.moves.remove(move);
+        }
+
+    }
+
+
     // Ô điều khiển
     private class TilePanel extends JPanel {
         private final int tileId; //id từng ô
@@ -229,6 +275,7 @@ public class Table {
                             final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
                             if(transition.getMoveStatus().isDone()){
                                 chessBoard = transition.getTransitionBoard();
+                                moveLog.addMove(move);
                             }
                             sourceTile=null;
                             destinationTile=null;
@@ -237,6 +284,8 @@ public class Table {
                         SwingUtilities.invokeLater(new Runnable() {
                             @Override
                             public void run() {
+                                gameHistoryPanel.redo(chessBoard,moveLog);
+                                takenPiecesPanel.redo(moveLog);
                                 boardPanel.drawBoard(chessBoard);
                             }
                         });

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.MajorAttackMove;
 import com.chess.engine.board.Move.MajorMove;
 import com.chess.engine.pieces.Piece.PieceType;
 import com.chess.engine.board.Move.AttackMove;
@@ -65,7 +66,7 @@ public class Knight extends Piece {
 
 					if (this.pieceAlliance != pieceAlliance) { //nếu con ngựa khác màu vs quân cờ ở ô đến thì hợp lệ
 						
-						legalMoves.add(new AttackMove(board ,this, candidateDestinationCoordinate,pieceAtDestination));
+						legalMoves.add(new MajorAttackMove(board ,this, candidateDestinationCoordinate,pieceAtDestination));
 					}
 				}
 			}

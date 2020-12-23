@@ -7,6 +7,7 @@ import java.util.List;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.MajorAttackMove;
 import com.chess.engine.board.Tile;
 import com.chess.engine.board.Move.AttackMove;
 import com.chess.engine.board.Move.MajorMove;
@@ -38,10 +39,9 @@ public class Rook extends Piece{
 			
 			while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 				
-				if(isFirstColumnExclusion(this.piecePosition, candidateCoordinateOffset)||
-						isEightHColumnExclusion(this.piecePosition, candidateCoordinateOffset)) {
+				if(isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)|| isEightHColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset))
 					break;
-				}
+
 				
 				
 				candidateDestinationCoordinate+=candidateCoordinateOffset;
@@ -60,7 +60,7 @@ public class Rook extends Piece{
 						final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 						if(this.pieceAlliance!=pieceAlliance) {
 							
-							legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+							legalMoves.add(new MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
 						}
 						break;
 					}

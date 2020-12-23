@@ -13,6 +13,9 @@ import com.chess.engine.board.Move.MajorMove;
 import com.chess.engine.pieces.Piece.PieceType;
 import com.google.common.collect.ImmutableList;
 import com.chess.engine.Alliance;
+
+import static com.chess.engine.board.Move.*;
+
 public class King extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_COORDINATE= {-9,-8,-7,-1,1,7,8,9};
@@ -55,7 +58,7 @@ public class King extends Piece {
 
 					if (this.pieceAlliance != pieceAlliance) { //nếu con ngựa khác màu vs quân cờ ở ô đến thì hợp lệ
 						
-						legalMoves.add(new AttackMove(board ,this, candidateDestinationCoordinate,pieceAtDestination));
+						legalMoves.add(new MajorAttackMove(board ,this, candidateDestinationCoordinate,pieceAtDestination));
 					}
 				}
 			}
