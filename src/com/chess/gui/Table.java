@@ -45,7 +45,7 @@ public class Table {
 
 
     //kich thuoc JFrame
-    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(700,600); //kich thuoc của Frame
+    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(740,600); //kich thuoc của Frame
     private static final Dimension BOARD_PANEL_DEMENSION= new Dimension(400,350);
     private static final Dimension TILE_PANEL_DIMENSION= new Dimension(10,10); // kich thuoc o cờ
     private static String linkHinhAnh ="hinhanh/covua/"; // duong dan hinh anh
