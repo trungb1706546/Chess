@@ -29,7 +29,7 @@ public class Board {
 	// ham xay dung
 	private Board(final Builder builder) {
 		this.gameBoard=createGameBoard(builder);
-		this.whitePieces= calculateActivePieces(this.gameBoard, Alliance.WHILE);
+		this.whitePieces= calculateActivePieces(this.gameBoard, Alliance.WHITE);
 		this.blackPieces= calculateActivePieces(this.gameBoard, Alliance.BLACK);
 		this.enPassantPawn= builder.enPassantPawn;
 		
@@ -154,24 +154,24 @@ public class Board {
 		builder.setPiece(new Pawn(Alliance.BLACK, 15));
 		
 		//WHILE
-		builder.setPiece(new Pawn(Alliance.WHILE, 48));
-		builder.setPiece(new Pawn(Alliance.WHILE, 49));
-		builder.setPiece(new Pawn(Alliance.WHILE, 50));
-		builder.setPiece(new Pawn(Alliance.WHILE, 51));
-		builder.setPiece(new Pawn(Alliance.WHILE, 52));
-		builder.setPiece(new Pawn(Alliance.WHILE, 53));
-		builder.setPiece(new Pawn(Alliance.WHILE, 54));
-		builder.setPiece(new Pawn(Alliance.WHILE, 55));
-		builder.setPiece(new Rook(Alliance.WHILE, 56));
-		builder.setPiece(new Knight(Alliance.WHILE, 57));
-		builder.setPiece(new Bishop(Alliance.WHILE, 58));
-		builder.setPiece(new Queen(Alliance.WHILE, 59));
-		builder.setPiece(new King(Alliance.WHILE, 60));
-		builder.setPiece(new Bishop(Alliance.WHILE, 61));
-		builder.setPiece(new Knight(Alliance.WHILE, 62));
-		builder.setPiece(new Rook(Alliance.WHILE, 63));
+		builder.setPiece(new Pawn(Alliance.WHITE, 48));
+		builder.setPiece(new Pawn(Alliance.WHITE, 49));
+		builder.setPiece(new Pawn(Alliance.WHITE, 50));
+		builder.setPiece(new Pawn(Alliance.WHITE, 51));
+		builder.setPiece(new Pawn(Alliance.WHITE, 52));
+		builder.setPiece(new Pawn(Alliance.WHITE, 53));
+		builder.setPiece(new Pawn(Alliance.WHITE, 54));
+		builder.setPiece(new Pawn(Alliance.WHITE, 55));
+		builder.setPiece(new Rook(Alliance.WHITE, 56));
+		builder.setPiece(new Knight(Alliance.WHITE, 57));
+		builder.setPiece(new Bishop(Alliance.WHITE, 58));
+		builder.setPiece(new Queen(Alliance.WHITE, 59));
+		builder.setPiece(new King(Alliance.WHITE, 60));
+		builder.setPiece(new Bishop(Alliance.WHITE, 61));
+		builder.setPiece(new Knight(Alliance.WHITE, 62));
+		builder.setPiece(new Rook(Alliance.WHITE, 63));
 		//white to move
-		builder.setMoveMaker(Alliance.WHILE); //Trang di truoc
+		builder.setMoveMaker(Alliance.WHITE); //Trang di truoc
 		
 		return builder.build();
 	}

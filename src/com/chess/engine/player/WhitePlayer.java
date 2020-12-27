@@ -33,7 +33,7 @@ public class WhitePlayer extends Player{
     @Override
     //lay ra LIEN MINH TRANG
     public Alliance getAlliance() {
-        return Alliance.WHILE;
+        return Alliance.WHITE;
     }
 
     @Override

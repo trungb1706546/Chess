@@ -87,6 +87,7 @@ public abstract class Piece {
 	}
 
 	public int getPieceValue(){
+
 		return this.pieceType.getPieceValue();
 	}
 
@@ -174,10 +175,12 @@ public abstract class Piece {
 
 		@Override
 		public String toString() {
+
 			return this.pieceName;
 		}
 
 		public int getPieceValue(){
+
 			return this.pieceValue;
 		}
 

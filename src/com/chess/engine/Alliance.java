@@ -7,7 +7,7 @@ import com.chess.engine.player.WhitePlayer;
 
 public enum Alliance {
 	
-	WHILE {
+	WHITE {
 		@Override
 		public int getDirection() {
 			// TODO Auto-generated method stub

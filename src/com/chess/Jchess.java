@@ -10,7 +10,7 @@ public class Jchess {
         Board board= Board.createStanderBoard();
         System.out.println(board);
 
-        Table table = new Table();
+        Table.get().show();
 
 
     }
